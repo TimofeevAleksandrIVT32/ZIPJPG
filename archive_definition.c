@@ -69,14 +69,18 @@ void arch_def(int amount, unsigned char **data, char *files[], int size[]){
         unsigned char zip_signature[] = {0x50, 0x4B, 0x05, 0x06}; //сигнатура Zip-архива
         int zip_sign_len = sizeof(zip_signature);
         unsigned char *res = find_sign(data[i], size[i], zip_signature, zip_sign_len);
-        if (res == NULL) {
-            printf("The file \"%s\" doesn`t contain an archive\n", files[i + 1]);
+	unsigned char jpg_signature[] = {0xFF, 0xD8}; //сигнатура Zip-архива
+        int jpg_sign_len = sizeof(jpg_signature);
+        unsigned char *res1 = find_sign(data[i], size[i], jpg_signature, jpg_sign_len);
+        if (res == NULL || res1 == NULL) {
+            //printf("The file \"%s\" doesn`t contain an archive\n", files[i + 1]);
+	    printf("The file \"%s\" is not zipjpg\n", files[i + 1]);
         }
         else {
             unsigned char lh_signature[] = {0x50, 0x4B, 0x03, 0x04}; //сигнатура локального заголовка
             int ls_sign_len = sizeof(lh_signature);
             res = find_sign(data[i], size[i], lh_signature, ls_sign_len); //ищем локальный заголовок
-            printf("The file \"%s\" contains an archive\n", files[i + 1]);
+            printf("The file \"%s\" is not zipjpg\n", files[i + 1]);
 
             while (res != NULL) {
                 const int fix_part_struc = 30; //в структуре до названия файла всегда 30 байт
@@ -132,4 +136,3 @@ void free_mem(int amount, unsigned char **hex) {
     }
     free(hex);
 }
-
