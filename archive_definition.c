@@ -79,7 +79,7 @@ void arch_def(int amount, unsigned char **data, char *files[], int size[]){
             unsigned char lh_signature[] = {0x50, 0x4B, 0x03, 0x04}; //сигнатура локального заголовка
             int ls_sign_len = sizeof(lh_signature);
             res = find_sign(data[i], size[i], lh_signature, ls_sign_len); //ищем локальный заголовок
-            printf("The file \"%s\" is not zipjpg\n", files[i + 1]);
+            printf("The file \"%s\" is zipjpg\n", files[i + 1]);
 
             while (res != NULL) {
                 const int fix_part_struc = 30; //в структуре до названия файла всегда 30 байт
