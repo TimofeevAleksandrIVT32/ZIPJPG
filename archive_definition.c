@@ -69,7 +69,7 @@ void arch_def(int amount, unsigned char **data, char *files[], int size[]){
         unsigned char zip_signature[] = {0x50, 0x4B, 0x05, 0x06}; //сигнатура Zip-архива
         int zip_sign_len = sizeof(zip_signature);
         unsigned char *res = find_sign(data[i], size[i], zip_signature, zip_sign_len);
-	unsigned char jpg_signature[] = {0xFF, 0xD8}; //сигнатура Zip-архива
+	unsigned char jpg_signature[] = {0xFF, 0xD8}; //сигнатура jpg
         int jpg_sign_len = sizeof(jpg_signature);
         unsigned char *res1 = find_sign(data[i], size[i], jpg_signature, jpg_sign_len);
         if (res == NULL || res1 == NULL) {
