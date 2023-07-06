@@ -73,7 +73,6 @@ void arch_def(int amount, unsigned char **data, char *files[], int size[]){
         int jpg_sign_len = sizeof(jpg_signature);
         unsigned char *res1 = find_sign(data[i], size[i], jpg_signature, jpg_sign_len);
         if (res == NULL || res1 == NULL) {
-            //printf("The file \"%s\" doesn`t contain an archive\n", files[i + 1]);
 	    printf("The file \"%s\" is not zipjpg\n", files[i + 1]);
         }
         else {
