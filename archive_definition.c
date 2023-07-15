@@ -97,7 +97,7 @@ void arch_def(unsigned char *data, char *file, int size){
         }
     }
 }
-
+ 
 unsigned char *find_sign(unsigned char *data, unsigned int datalen, unsigned char signature[], int signlen) {
     if (data == NULL || signature == NULL || datalen == 0 || signlen == 0) {
         return NULL;
