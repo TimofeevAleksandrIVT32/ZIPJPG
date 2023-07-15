@@ -1,28 +1,27 @@
 #ifndef ARCHIVE_DEFINITION_H
 #define ARCHIVE_DEFINITION_H
 
+#pragma pack(push,1)
 struct local_file_headers {
-    unsigned char signature[4];
-    unsigned char version[2];
-    unsigned char flags[2];
-    unsigned char compression[2];
-    unsigned char mod_time[2];
-    unsigned char mod_date[2];
-    unsigned char crc_32[4];
-    unsigned char compressed_size[4];
-    unsigned char uncompressed_size[4];
-    unsigned char file_name_len[2];
-    unsigned char extra_field_len[2];
-    unsigned char *file_name;
+    uint32_t signature;
+    uint16_t version;
+    uint16_t flags;
+    uint16_t compression;
+    uint16_t mod_time;
+    uint16_t mod_date;
+    uint32_t crc_32;
+    uint32_t compressed_size;
+    uint32_t uncompressed_size;
+    uint16_t file_name_len;
+    uint16_t extra_field_len;
+    uint8_t *file_name;
 };
+#pragma pack(pop)
 
-unsigned char **read_data(int amount, char *files[], int size[]);
-unsigned char **arr_memory_allocation(int amount);
+unsigned int read_data(int amount, char *files[]);
 unsigned char *str_memory_allocation(int size);
 unsigned int file_size(FILE *file);
+void arch_def(unsigned char *data, char *file, int size);
 unsigned char *find_sign(unsigned char *data, unsigned int datalen, unsigned char signature[], int signlen);
-void arch_def(int amount, unsigned char **data, char *files[], int size[]);
-void ascii_decoding(unsigned char encoded[], int length);
-void free_mem(int amount, unsigned char **hex);
 
 #endif /* ARCHIVE_DEFINITION_H */
