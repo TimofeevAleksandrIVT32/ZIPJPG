@@ -9,7 +9,7 @@
 
 //считываем данные из файла в строку data
 unsigned int read_data(int amount, char *files[]) {
-    if (amount < 1) {
+    if (amount == 0) {
         printf("File name not entered\n");
         return 1;
     }
